@@ -9,7 +9,10 @@ import java.util.Properties;
  * @author Adam Tulinius
  */
 public class CommandLineArgs {
-    @Parameter(names = {"-s", "--servers"}, description = "servers to connect to, delimited by comma, e.g. foo.examle.com:9092,bar.example.com:9092", required = true)
+    @Parameter(names = {"-h", "--help"}, description = "display this help message", help = true)
+    private boolean help;
+
+    @Parameter(names = {"-s", "--servers"}, description = "servers to connect to, delimited by comma", required = true)
     private String servers;
 
     @Parameter(names = {"-t", "--topic"}, description = "topic to write to", required = true)
@@ -18,11 +21,15 @@ public class CommandLineArgs {
     @Parameter(names = {"-v"}, description = "turn on output", required = false)
     private boolean verbose;
 
-    @Parameter(names = {"--stats"}, description = "print stats when done", required = false)
+    @Parameter(names = {"-d", "--dump-stats"}, description = "print stats when done", required = false)
     private boolean stats;
 
     public String toString() {
         return String.format("servers: %s, topic: %s", servers, topic);
+    }
+
+    public boolean isHelp() {
+        return help;
     }
 
     public String getServers() {

@@ -25,14 +25,19 @@ public class KafkaDispatch {
 
     public static void main(String[] args) throws IOException {
         CommandLineArgs commandLineArgs = new CommandLineArgs();
-        new JCommander(commandLineArgs, args);
+        JCommander jCommander = new JCommander(commandLineArgs, args);
 
-        Properties properties = commandLineArgs.asProperties(System.getProperties());
-        properties.putIfAbsent("linger.ms", 5);
-        properties.putIfAbsent("acks", "all");
+        if (commandLineArgs.isHelp()) {
+            jCommander.usage();
+        } else {
 
-        KafkaDispatch kafkaDispatch = new KafkaDispatch(properties, System.in);
-        kafkaDispatch.run();
+            Properties properties = commandLineArgs.asProperties(System.getProperties());
+            properties.putIfAbsent("linger.ms", 5);
+            properties.putIfAbsent("acks", "all");
+
+            KafkaDispatch kafkaDispatch = new KafkaDispatch(properties, System.in);
+            kafkaDispatch.run();
+        }
     }
 
     public KafkaDispatch(Properties properties, InputStream inputStream) {
