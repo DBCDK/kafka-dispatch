@@ -13,13 +13,13 @@ One might ask "what can this project can do me?", to which the answer is
 
 ### Building it
 
- * ````mvn clean package````
+ * ````./gradlew clean assemble````
 
 
 ### Usage
 
 ```
-$ java -jar target/kafka-dispatch-1.0-SNAPSHOT.jar --help
+$ java -jar build/libs/kafka-dispatch-<version>.jar --help
 Usage: <main class> [options]
   Options:
     -d, --dump-stats
@@ -38,7 +38,7 @@ Usage: <main class> [options]
 ```
 
 ```
-$ java -jar target/kafka-dispatch-1.0-SNAPSHOT.jar -s kafka-host-1:9092,kafka-host-2:9092 -t my-topic < /my/data/file
+$ java -jar build/libs/kafka-dispatch-<version>.jar  -s kafka-host-1:9092,kafka-host-2:9092 -t my-topic < /my/data/file
 ```
 
 

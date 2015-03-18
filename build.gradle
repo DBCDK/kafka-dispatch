@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+sourceCompatibility = 1.8
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.8.2.1'
+    compile group: 'com.beust', name: 'jcommander', version: '1.47'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "dk.dbc.kafka.dispatch.KafkaDispatch"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
