@@ -13,7 +13,6 @@ import java.util.Optional;
  */
 public class InputStreamSource extends Source<String> {
     private BufferedReader reader;
-    private String line;
 
     public InputStreamSource(InputStream inputStream) {
         this.reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
@@ -21,7 +20,7 @@ public class InputStreamSource extends Source<String> {
 
     @Override
     public Optional next() throws IOException {
-        line = reader.readLine();
+        String line = reader.readLine();
         if (line != null) {
             return Optional.of(line);
         } else {
