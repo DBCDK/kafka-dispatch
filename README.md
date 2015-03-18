@@ -42,6 +42,11 @@ $ java -jar target/kafka-dispatch-1.0-SNAPSHOT.jar -s kafka-host-1:9092,kafka-ho
 ```
 
 
+### Performance
+
+Measurements show that the dispatcher is capable of shipping more than 500.000 messages/s to Kafka. This can probably be improved -- feedback wanted.
+
+
 ### Feedback
 
 Please use the github issue-tracker for submitting bug reports and suggestions.
