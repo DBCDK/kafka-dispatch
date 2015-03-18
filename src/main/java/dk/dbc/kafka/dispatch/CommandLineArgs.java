@@ -24,6 +24,9 @@ public class CommandLineArgs {
     @Parameter(names = {"-d", "--dump-stats"}, description = "print stats when done", required = false)
     private boolean stats;
 
+    @Parameter(names = {"-b", "--benchmark"}, description = "send n random events to Kafka", required = false)
+    private int benchmarkCount = 0;
+
     public String toString() {
         return String.format("servers: %s, topic: %s", servers, topic);
     }
@@ -42,6 +45,14 @@ public class CommandLineArgs {
 
     public boolean isVerbose() {
         return verbose;
+    }
+
+    public boolean isBenchmark() {
+        return benchmarkCount != 0;
+    }
+
+    public int getBenchmarkCount() {
+        return benchmarkCount;
     }
 
     public boolean printStats() {
