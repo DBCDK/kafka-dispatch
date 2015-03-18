@@ -19,7 +19,7 @@ public class InputStreamSource extends Source<String> {
     }
 
     @Override
-    public Optional next() throws IOException {
+    public Optional<String> next() throws IOException {
         String line = reader.readLine();
         if (line != null) {
             return Optional.of(line);
